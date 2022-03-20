@@ -11,13 +11,15 @@ class Piece:
         for i in coord:
             if i<1 or i>8:
                 raise ValueError("coord out of range")
+        
         self.__coord = coord
         self._IsBlack = IsBlack
+    
     @property
     def coord(self):
         # tranforma las coordenadas del tablero a coordenadas de pixeles
         # cada casilla son 24 pixeles, con 5 pixeles extra centras la pieza en las x
-        return [(self.__coord[0]-1)*24+5,st.screen_height-(self.__coord[1]*24)] 
+        return [(self.__coord[0]-1)*24+4,st.screen_height-(self.__coord[1]*24)+1] 
     @coord.setter
     def coord(self,coord:list):
         if isinstance(coord[0],str):
