@@ -29,16 +29,21 @@ class game:
     def draw(self):
         pyxel.cls(st.light_brown)
         self.draw_board()
+        self.draw_pieces()
+    
+
+    def draw_pieces(self):
         for piece in self.__p1_pieces:
             pyxel.blt(*piece.coord,*piece._sprite)
         for piece in self.__p2_pieces:
             pyxel.blt(*piece.coord,*piece._sprite)
-
     def draw_board(self):
+        '''just draws the board'''
         pyxel.blt(0,0,*self.__board._sprite)
     
     
     def init_pieces(self):
+        '''sets every piece on his initial coordinate'''
         for i in range(1,9,1):
             self.__p1_pieces.append(Pawn([i,7]))
         self.__p1_pieces.append(Rook(['a',8]))
