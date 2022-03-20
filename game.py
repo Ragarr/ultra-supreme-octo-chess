@@ -31,14 +31,18 @@ class game:
         self.draw_board()
         for piece in self.__p1_pieces:
             pyxel.blt(*piece.coord,*piece._sprite)
+        for piece in self.__p2_pieces:
+            pyxel.blt(*piece.coord,*piece._sprite)
 
     def draw_board(self):
         pyxel.blt(0,0,*self.__board._sprite)
+    
+    
     def init_pieces(self):
         for i in range(1,9,1):
             self.__p1_pieces.append(Pawn([i,7]))
-        self.__p1_pieces.append(Rook([1,8]))
-        self.__p1_pieces.append(Rook([8,8]))
+        self.__p1_pieces.append(Rook(['a',8]))
+        self.__p1_pieces.append(Rook(['h',8]))
         self.__p1_pieces.append(Queen(['e',8]))
         self.__p1_pieces.append(King(['d',8]))
         self.__p1_pieces.append(Bishop(['f',8]))
@@ -47,14 +51,14 @@ class game:
         self.__p1_pieces.append(Knight(['g',8]))
 
         for i in range(1,9,1):
-            self.__p1_pieces.append(Pawn([i,2],False))
-        self.__p1_pieces.append(Rook([1,1],False))
-        self.__p1_pieces.append(Rook([8,1],False))
-        self.__p1_pieces.append(Queen(['e',1],False))
-        self.__p1_pieces.append(King(['d',1],False))
-        self.__p1_pieces.append(Bishop(['f',1],False))
-        self.__p1_pieces.append(Bishop(['c',1],False))
-        self.__p1_pieces.append(Knight(['b',1],False))
-        self.__p1_pieces.append(Knight(['g',1],False))
+            self.__p2_pieces.append(Pawn([i,2],False))
+        self.__p2_pieces.append(Rook(['a',1],False))
+        self.__p2_pieces.append(Rook(['h',1],False))
+        self.__p2_pieces.append(Queen(['e',1],False))
+        self.__p2_pieces.append(King(['d',1],False))
+        self.__p2_pieces.append(Bishop(['f',1],False))
+        self.__p2_pieces.append(Bishop(['c',1],False))
+        self.__p2_pieces.append(Knight(['b',1],False))
+        self.__p2_pieces.append(Knight(['g',1],False))
     
 game()
