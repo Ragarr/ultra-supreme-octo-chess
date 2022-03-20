@@ -4,5 +4,6 @@ if __name__ == "__main__":
 
 
 class Piece:
-    def __init__(self) -> None:
-        pass
+    def __init__(self,coord:list, sprite:list) -> None:
+        self._sprite = sprite
+        self.coord = coord
