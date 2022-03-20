@@ -3,6 +3,6 @@ if __name__ == "__main__":
     quit()
 
 
-class piece:
+class Piece:
     def __init__(self) -> None:
         pass
