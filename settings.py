@@ -2,8 +2,8 @@
 configuración del juego como la resolucion etc"""
 
 # screen
-screen_width = 256
-screen_height = 256
+screen_width = 191
+screen_height = 191
 fps = 30
 assets_path = "assets\chess_assets.pyxres"
 
