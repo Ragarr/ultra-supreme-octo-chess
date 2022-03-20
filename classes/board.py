@@ -10,7 +10,7 @@ class Board:
         self.array=np.full([8, 8], '▨')
 
     def __str__(self) -> str:
-        return np.array2string(self.array, formatter={'all': lambda x: str(x)})
+        return str(np.array2string(self.array, formatter={'all': lambda x: str(x)}))+'\n'
 
     def update(self,pieces:list):
         for piece in pieces:
