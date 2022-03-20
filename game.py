@@ -28,5 +28,5 @@ class game:
     def draw_board(self):
         pyxel.blt(0,0,*self.__board._sprite)
     def init_pieces(self):
-        self.__p1_pieces.append(Rook(['a',8]))
+        self.__p1_pieces.append(Rook(['c',5]))
 game()
