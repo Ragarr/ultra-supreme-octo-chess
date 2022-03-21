@@ -13,7 +13,7 @@ class Piece:
                 raise ValueError("coord out of range")
         self._position= pos
         self._IsBlack = IsBlack
-    
+
     @property
     def coord(self):
         # tranforma las coordenadas del tablero a coordenadas de pixeles
