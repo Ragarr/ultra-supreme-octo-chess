@@ -2,7 +2,7 @@ if __name__ == "__main__":
     print("this file is not suposed to be run")
     quit()
 
-from classes.pieces.Piece import Piece
+from classes.pieces.piece import Piece
 import settings as st
 
 class Knight(Piece):

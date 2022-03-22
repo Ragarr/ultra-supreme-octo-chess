@@ -1,11 +1,11 @@
 import pyxel
 # from classes.Board import Board
-from classes.pieces.Rook import Rook
-from classes.pieces.Pawn import Pawn
-from classes.pieces.Queen import Queen
-from classes.pieces.King import King
-from classes.pieces.Knight import Knight
-from classes.pieces.Bishop import Bishop
+from classes.pieces.rook import Rook
+from classes.pieces.pawn import Pawn
+from classes.pieces.queen import Queen
+from classes.pieces.king import King
+from classes.pieces.knight import Knight
+from classes.pieces.bishop import Bishop
 import settings as st
 import numpy as np
 
