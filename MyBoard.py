@@ -10,7 +10,3 @@ class MyBoard(chess.Board):
         return [1,0,0,191,191,st.black]
     def get_array(self):
         return np.asanyarray(re.split(' |\n',str(self))).reshape(8,8)
-    
-
-a=MyBoard()
-print(a.get_array())
