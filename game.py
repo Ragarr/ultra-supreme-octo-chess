@@ -8,6 +8,7 @@ class game:
         pyxel.init(st.screen_width,st.screen_height,caption = "Super orto mega ajedrez", fps = st.fps,scale=4)
         pyxel.load(st.assets_path)
         pyxel.mouse(True)
+        self.__selections=[]
         self.__board=MyBoard()
         print(self)
         # esta linea siempre al final 
@@ -17,14 +18,17 @@ class game:
         return str(self.__board)
 
     def update(self):
-        pass
+        if pyxel.btn(pyxel.MOUSE_LEFT_BUTTON):
+            self.__selections.append([pyxel.mouse_x//24,pyxel.mouse_y//24])
 
     def draw(self):
         pyxel.cls(st.light_brown)
-        print(self.__board,end='\n\n')
+        # print(self.__board,end='\n\n')
         self.draw_board()
         self.draw_pieces()
-
+        for selection in self.__selections:
+            if selection:
+                self.select(selection)
     
     def draw_board(self):
         '''just draws the board'''
@@ -32,7 +36,7 @@ class game:
     
     def draw_pieces(self):
         i=0
-        for row in self.__board.get_array():
+        for row in self.__board.array:
             j=0
             for piece in row:
                 self.draw_piece(piece,[i,j])
@@ -48,4 +52,9 @@ class game:
                  'N':[0,32,32,16,23,st.green],'P':[0,0,32,16,23,st.green],'Q':[0,80,32,16,23,st.green]}
         coord=[((pos[1])*24)+4,(pos[0])*24] 
         pyxel.blt(coord[0],coord[1],*sprites[piece])
+
+    def select(self,pos:list):
+        coord=[((pos[0])*24),(pos[1])*24]
+        print('selected',pos,coord)
+        pyxel.blt(*coord,1,0,208,24,24,st.green)
 game()
