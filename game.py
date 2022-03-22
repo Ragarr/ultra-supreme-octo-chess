@@ -16,7 +16,7 @@ class game:
         pyxel.load(st.assets_path)
         pyxel.mouse(True)
         self.__board_sprite=[0,0,1,0,0,191,191,st.black]
-        self.array=np.full([8, 8], '.')
+        self.array=np.full([8, 8], '.',dtype=object)
         self.init_pieces()
         self.i=0
         # esta linea siempre al final 
