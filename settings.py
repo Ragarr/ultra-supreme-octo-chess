@@ -5,7 +5,7 @@ configuración del juego como la resolucion etc"""
 screen_width = 191
 screen_height = 191
 fps = 60
-assets_path = "assets\chess_assets.pyxres"
+assets_path = r"assets\editor\assets\chess_assets.pyxres"
 
 # colors
 black = 0
@@ -24,3 +24,6 @@ blue = 12
 grey = 13
 salmon = 14
 light_brown = 15
+
+# sprites
+selected_sprite=[0,0,88,24,24,green]
