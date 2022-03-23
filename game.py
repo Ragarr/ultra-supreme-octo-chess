@@ -27,6 +27,7 @@ class game:
         self.init_pieces()
         self.piece_selected = False
         self._BlacksTurn=False
+        print('turno de blancas')
         self._selecteds = {}
         self.first_coords=()
         self.second_coords=()
@@ -35,12 +36,19 @@ class game:
 
     def update(self):
         # print(self)
+        self.select_and_move()
+        
+            
+
+                
+    def select_and_move(self):
         if len(self._selecteds)==0 and pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON): # para evitar el multi click usamos btnp en vez de btn
             first_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
             self.first_coords=(pyxel.mouse_y//24,pyxel.mouse_x//24) # es una coordenada
-            print('1º has seleccionado', first_selection)
-            self._selecteds[self.first_coords]=first_selection
-            print(self._selecteds)
+            if first_selection and first_selection._IsBlack==self._BlacksTurn:
+                print('1º has seleccionado', first_selection)
+                self._selecteds[self.first_coords]=first_selection
+                print(self._selecteds)
 
         if len(self._selecteds)==1 and pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON):
             second_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
@@ -58,11 +66,9 @@ class game:
             else:
                 print('seleccione una ficha primero po favo')
             self._selecteds.clear()
-        
-            
-
-                
-
+            self._BlacksTurn= not self._BlacksTurn
+            txt =  'negras' if self._BlacksTurn else 'blancas'
+            print('turno de', txt)
 
     def draw(self):
         pyxel.cls(st.light_brown)
