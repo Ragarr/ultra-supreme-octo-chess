@@ -60,7 +60,7 @@ class game:
         if len(self._selecteds)==2:  
             if self._selecteds[self.first_coords]:
                 print('se ha movido la ficha')
-                if self._selecteds[self.first_coords].move(self.first_coords,self.second_coords):
+                if self._selecteds[self.first_coords].move(self.array,self.first_coords,self.second_coords):
                     self.array[self.second_coords[0],self.second_coords[1]]=self.array[self.first_coords[0],self.first_coords[1]]
                     self.array[self.first_coords[0],self.first_coords[1]]=None
             else:
