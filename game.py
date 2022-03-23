@@ -18,23 +18,50 @@ class game:
                    caption="Super orto mega ajedrez", fps=st.fps, scale=4)
         pyxel.load(st.assets_path)
         pyxel.mouse(True)
+        self.init_parameters()
+        # esta linea siempre al final
+        pyxel.run(self.update, self.draw)
+    def init_parameters(self):
         self.__board_sprite = [0, 0, 1, 0, 0, 191, 191, st.black]
         self.array = np.full([8, 8], None, dtype=object)
         self.init_pieces()
         self.piece_selected = False
-        self._selecteds = []
-        # esta linea siempre al final
-        pyxel.run(self.update, self.draw)
-
+        self._BlacksTurn=False
+        self._selecteds = {}
+        self.first_coords=()
+        self.second_coords=()
     def __str__(self) -> str:
         return str(np.array2string(self.array, formatter={'all': lambda x:  str(x) if x else '.'}))+'\n'
 
     def update(self):
         # print(self)
-        print(self)
-        if pyxel.btn(pyxel.MOUSE_LEFT_BUTTON):
-            if self.array[pyxel.mouse_x//24][pyxel.mouse_y//24]:
-                pass
+        if len(self._selecteds)==0 and pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON): # para evitar el multi click usamos btnp en vez de btn
+            first_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
+            self.first_coords=(pyxel.mouse_y//24,pyxel.mouse_x//24) # es una coordenada
+            print('1º has seleccionado', first_selection)
+            self._selecteds[self.first_coords]=first_selection
+            print(self._selecteds)
+
+        if len(self._selecteds)==1 and pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON):
+            second_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
+            self.second_coords=(pyxel.mouse_y//24,pyxel.mouse_x//24) # es una coordenada
+            print('2º has seleccionado', second_selection)
+            self._selecteds[self.second_coords]=second_selection
+            print(self._selecteds)
+
+        if len(self._selecteds)==2:  
+            if self._selecteds[self.first_coords]:
+                print('se ha movido la ficha')
+                if self._selecteds[self.first_coords].move(self.first_coords,self.second_coords):
+                    self.array[self.second_coords[0],self.second_coords[1]]=self.array[self.first_coords[0],self.first_coords[1]]
+                    self.array[self.first_coords[0],self.first_coords[1]]=None
+            else:
+                print('seleccione una ficha primero po favo')
+            self._selecteds.clear()
+        
+            
+
+                
 
 
     def draw(self):
@@ -89,8 +116,8 @@ class game:
         self._selecteds.append(coord)
 
     def draw_selections(self):
-        for selec in self._selecteds:
-            pyxel.blt(*selec, *st.selected_sprite)
+        for selec in self._selecteds.keys():
+            pyxel.blt(selec[1]*24,selec[0]*24, *st.selected_sprite)
 
     '''def move_piece(self,pos_origen,pos_final):
         print('ficha movida')
