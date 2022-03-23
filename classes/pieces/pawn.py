@@ -2,6 +2,7 @@ if __name__ == "__main__":
     print("this file is not suposed to be run")
     quit()
 
+from hashlib import new
 from classes.pieces.piece import Piece
 import settings as st
 
@@ -17,3 +18,30 @@ class Pawn(Piece):
             return 'p'
         else:
             return 'P'
+    
+    def move(self,ctx_array,old_coords,new_coords):
+        if old_coords==new_coords:
+            return False
+        # movimiento diagonal
+        if (new_coords[1]!=old_coords[1] and ctx_array[new_coords[0]][new_coords[1]] and 
+            ctx_array[new_coords[0]][new_coords[1]]._IsBlack!=self._IsBlack):
+            print('movimiento diagonal',abs(new_coords[0]-old_coords[0]))
+            
+            if abs(new_coords[0]-old_coords[0])!=1 :
+                return False
+            else:
+                return True
+        # movimiento en linea recta
+        if new_coords[1]==old_coords[1] and not ctx_array[new_coords[0]][new_coords[1]]:
+            print('movimiento recto',abs(new_coords[0]-old_coords[0]))
+            if abs(new_coords[0]-old_coords[0])==2:
+                if old_coords[0]==1 or old_coords[0]==6:
+                    return True
+                else:
+                    return False
+            elif abs(new_coords[0]-old_coords[0])==1:
+                return True
+        return False
+            
+
+        

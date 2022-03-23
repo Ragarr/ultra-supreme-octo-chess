@@ -59,16 +59,19 @@ class game:
 
         if len(self._selecteds)==2:  
             if self._selecteds[self.first_coords]:
-                print('se ha movido la ficha')
                 if self._selecteds[self.first_coords].move(self.array,self.first_coords,self.second_coords):
+                    print('se ha movido la ficha')
                     self.array[self.second_coords[0],self.second_coords[1]]=self.array[self.first_coords[0],self.first_coords[1]]
                     self.array[self.first_coords[0],self.first_coords[1]]=None
+                    self._BlacksTurn= not self._BlacksTurn
+                    txt =  'negras' if self._BlacksTurn else 'blancas'
+                    print('turno de', txt)
+                else:
+                    print('NO se ha movido la ficha')
             else:
                 print('seleccione una ficha primero po favo')
             self._selecteds.clear()
-            self._BlacksTurn= not self._BlacksTurn
-            txt =  'negras' if self._BlacksTurn else 'blancas'
-            print('turno de', txt)
+
 
     def draw(self):
         pyxel.cls(st.light_brown)
