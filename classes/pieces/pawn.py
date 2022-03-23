@@ -26,11 +26,16 @@ class Pawn(Piece):
         if (new_coords[1]!=old_coords[1] and ctx_array[new_coords[0]][new_coords[1]] and 
             ctx_array[new_coords[0]][new_coords[1]]._IsBlack!=self._IsBlack):
             print('movimiento diagonal',abs(new_coords[0]-old_coords[0]))
-            
-            if abs(new_coords[0]-old_coords[0])!=1 :
-                return False
+            if self._IsBlack:
+                if new_coords[0]-old_coords[0]!=1 :
+                    return False
+                else:
+                    return True
             else:
-                return True
+                if new_coords[0]-old_coords[0]!=-1 :
+                    return False
+                else:
+                    return True
         # movimiento en linea recta
         if new_coords[1]==old_coords[1] and not ctx_array[new_coords[0]][new_coords[1]]:
             print('movimiento recto',abs(new_coords[0]-old_coords[0]))

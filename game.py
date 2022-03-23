@@ -15,7 +15,7 @@ import numpy as np
 class game:
     def __init__(self) -> None:
         pyxel.init(st.screen_width, st.screen_height,
-                   caption="Super orto mega ajedrez", fps=st.fps, scale=4)
+                   caption="Super orto mega ajedrez", fps=st.fps, scale=2)
         pyxel.load(st.assets_path)
         pyxel.mouse(True)
         self.init_parameters()
@@ -35,7 +35,6 @@ class game:
         return str(np.array2string(self.array, formatter={'all': lambda x:  str(x) if x else '.'}))+'\n'
 
     def update(self):
-        # print(self)
         self.select_and_move()
         
             
@@ -71,6 +70,7 @@ class game:
             else:
                 print('seleccione una ficha primero po favo')
             self._selecteds.clear()
+            print(self)
 
 
     def draw(self):
