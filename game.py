@@ -53,8 +53,4 @@ class game:
         coord=[((pos[1])*24)+4,(pos[0])*24] 
         pyxel.blt(coord[0],coord[1],*sprites[piece])
 
-    def select(self,pos:list):
-        coord=[((pos[0])*24),(pos[1])*24]
-        print('selected',pos,coord)
-        pyxel.blt(*coord,1,0,208,24,24,st.green)
 game()
