@@ -52,5 +52,19 @@ class game:
                  'N':[0,32,32,16,23,st.green],'P':[0,0,32,16,23,st.green],'Q':[0,80,32,16,23,st.green]}
         coord=[((pos[1])*24)+4,(pos[0])*24] 
         pyxel.blt(coord[0],coord[1],*sprites[piece])
+    
+    
+    
+    
+    def select(self, pos: list):
+        if len(self._selecteds) > 2:
+            self.piece_selected = False
+        coord = [((pos[1])*24), (pos[0])*24]
+        if coord in self._selecteds:
+            return
+        self._selecteds.append(coord)
 
+    def draw_selections(self):
+        for selec in self._selecteds.keys():
+            pyxel.blt(selec[1]*24,selec[0]*24, *st.selected_sprite)
 game()
