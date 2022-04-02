@@ -45,12 +45,16 @@ class game:
             first_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
             self.first_coords=(pyxel.mouse_y//24,pyxel.mouse_x//24) # es una coordenada
             if first_selection and first_selection._IsBlack==self._BlacksTurn:
+                print('1º has seleccionado', first_selection)
                 self._selecteds[self.first_coords]=first_selection
+                print(self._selecteds)
 
         if len(self._selecteds)==1 and pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON):
             second_selection=self.array[pyxel.mouse_y//24][pyxel.mouse_x//24] # es una pieza o un none si has pinchado en vacio
             self.second_coords=(pyxel.mouse_y//24,pyxel.mouse_x//24) # es una coordenada
+            print('2º has seleccionado', second_selection)
             self._selecteds[self.second_coords]=second_selection
+            print(self._selecteds)
 
         if len(self._selecteds)==2:  
             if self._selecteds[self.first_coords]:
