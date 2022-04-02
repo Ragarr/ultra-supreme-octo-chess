@@ -40,7 +40,6 @@ class Rook(Piece):
                     enemy_piece = [i,old_coords_x]
                 if ctx_array[i][old_coords_x]._IsBlack!=self._IsBlack:
                     ally_piece= [i,old_coords_x]
-        return True
 
     def __piece_on_path_y(self,ctx_array,old_coords_y,new_coords_y):
         ''' returns the piece on the path of the rook'''
